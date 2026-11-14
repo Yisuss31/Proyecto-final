@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: mongodb://mongo:27017/arcadevault
+      JWT_SECRET: dev-secret-cambia-esto-32-chars-minimo
+      SESSION_SECRET: dev-session-secret-distinto
+    depends_on:
+      - mongo
+    volumes:
+      - ./public/uploads:/app/public/uploads
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

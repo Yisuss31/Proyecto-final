@@ -1,0 +1,3 @@
+/* Estilos propios que complementan Bootstrap */
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.card-img-top { background: #222; }

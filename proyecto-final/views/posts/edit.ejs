@@ -1,0 +1,18 @@
+<section class="card">
+  <h1>Editar Post</h1>
+  <%- include('../partials/errors') %>
+  
+  <form action="/posts/<%= post.id %>?_method=PUT" method="POST">
+    <label>Título
+      <input type="text" name="title" value="<%= old.title || '' %>" required maxlength="200">
+    </label>
+    <label>Contenido
+      <textarea name="content" rows="8" required><%= old.content || '' %></textarea>
+    </label>
+    <button type="submit" class="btn btn-block">Guardar Cambios</button>
+  </form>
+  
+  <div class="mt-4">
+    <a href="/posts/<%= post.id %>">← Cancelar</a>
+  </div>
+</section>

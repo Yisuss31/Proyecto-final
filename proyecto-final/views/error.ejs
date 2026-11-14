@@ -1,0 +1,8 @@
+<div class="text-center py-5">
+  <h1 class="display-1 fw-bold"><%= status %></h1>
+  <p class="lead"><%= message %></p>
+  <a href="/" class="btn btn-primary mt-3">Volver al inicio</a>
+  <% if (stack) { %>
+    <pre class="text-start mt-4 small text-secondary text-wrap"><%= stack %></pre>
+  <% } %>
+</div>

@@ -1,0 +1,45 @@
+<section>
+  <div class="row-between">
+    <h1>Todos los Posts</h1>
+  </div>
+
+  <!-- Buscador -->
+  <form action="/posts" method="GET" class="search-form">
+    <input type="text" name="q" value="<%= search %>" placeholder="Buscar por título o contenido...">
+    <button type="submit" class="btn">Buscar</button>
+    <% if (search) { %>
+      <a href="/posts" class="btn-link text-muted">Limpiar</a>
+    <% } %>
+  </form>
+
+  <% if (!posts.length) { %>
+    <div class="card text-center">
+      <p>No se encontraron posts.</p>
+    </div>
+  <% } else { %>
+    <ul class="post-list">
+      <% posts.forEach(p => { %>
+        <li class="post-item">
+          <h2><a href="/posts/<%= p.id %>"><%= p.title %></a></h2>
+          <p class="meta">Por <strong><%= p.author_email %></strong> · <%= new Date(p.created_at).toLocaleDateString('es-ES') %></p>
+          <p><%= p.content.substring(0, 150) %><%= p.content.length > 150 ? '...' : '' %></p>
+          <a href="/posts/<%= p.id %>" class="btn-link">Leer más →</a>
+        </li>
+      <% }) %>
+    </ul>
+
+    <!-- Paginación -->
+    <nav class="pagination">
+      <% const qs = search ? '&q=' + encodeURIComponent(search) : ''; %>
+      <% if (page > 1) { %>
+        <a href="/posts?page=<%= page - 1 %>&limit=<%= limit %><%= qs %>" class="btn">← Anterior</a>
+      <% } else { %><span></span><% } %>
+      
+      <span>Página <%= page %> de <%= totalPages %> (<%= total %> posts)</span>
+      
+      <% if (page < totalPages) { %>
+        <a href="/posts?page=<%= page + 1 %>&limit=<%= limit %><%= qs %>" class="btn">Siguiente →</a>
+      <% } else { %><span></span><% } %>
+    </nav>
+  <% } %>
+</section>

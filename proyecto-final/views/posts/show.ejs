@@ -1,0 +1,23 @@
+<article class="card">
+  <h1><%= post.title %></h1>
+  <p class="meta">Publicado por <strong><%= post.author_email %></strong> el <%= new Date(post.created_at).toLocaleString('es-ES') %></p>
+  <hr>
+  <div class="post-content">
+    <p><%= post.content %></p>
+  </div>
+
+  <!-- Solo mostramos Editar/Eliminar si el usuario es dueño del post O es admin -->
+  <% if (currentUser && (currentUser.role === 'admin' || currentUser.id === post.user_id)) { %>
+    <div class="actions">
+      <a href="/posts/<%= post.id %>/edit" class="btn">✏️ Editar</a>
+      
+      <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este post?');">
+        <button type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+      </form>
+    </div>
+  <% } %>
+
+  <div class="mt-4">
+    <a href="/posts">← Volver al listado</a>
+  </div>
+</article>

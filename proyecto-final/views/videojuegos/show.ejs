@@ -1,0 +1,31 @@
+<article>
+  <a href="/videojuegos" class="btn btn-sm btn-outline-secondary mb-3">← Volver</a>
+  <div class="row g-4">
+    <div class="col-md-5">
+      <% if (item.imagen) { %>
+        <img src="<%= item.imagen %>" class="img-fluid rounded border border-secondary"
+             alt="<%= item.titulo %>">
+      <% } else { %>
+        <div class="border border-secondary rounded d-flex align-items-center justify-content-center"
+             style="height:320px">Sin portada</div>
+      <% } %>
+    </div>
+    <div class="col-md-7">
+      <h1><%= item.titulo %> <small class="text-secondary">(<%= item.anio %>)</small></h1>
+      <p class="lead"><%= item.plataforma %> · <%= item.genero %></p>
+      <p><strong>Desarrollador:</strong> <%= item.desarrollador || '—' %></p>
+      <p><strong>Rating:</strong> ⭐ <%= item.rating %></p>
+      <p class="text-secondary"><%= item.descripcion || 'Sin descripción.' %></p>
+      <p class="small text-secondary">Añadido por <%= item.propietario?.nombre || 'usuario' %></p>
+
+      <% if (currentUser && (currentUser.rol === 'admin' ||
+             String(currentUser._id) === String(item.propietario?._id))) { %>
+        <a class="btn btn-warning" href="/videojuegos/<%= item._id %>/editar">Editar</a>
+        <form action="/videojuegos/<%= item._id %>?_method=DELETE" method="POST" class="d-inline"
+              onsubmit="return confirm('¿Eliminar este videojuego?')">
+          <button class="btn btn-danger">Eliminar</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,10 @@
+<section class="text-center py-5">
+  <h1 class="display-3 fw-bold">🎮 Arcade Vault</h1>
+  <p class="lead text-secondary">Tu colección personal de videojuegos: regístralos, puntúalos y compártelos.</p>
+  <div class="mt-4">
+    <a class="btn btn-primary btn-lg me-2" href="/videojuegos">Explorar colección</a>
+    <% if (!currentUser) { %>
+      <a class="btn btn-outline-light btn-lg" href="/auth/register">Crear cuenta</a>
+    <% } %>
+  </div>
+</section>

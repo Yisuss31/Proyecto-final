@@ -1,0 +1,8 @@
+<h2>Editar: <%= item.titulo %></h2>
+<form method="POST" action="/videojuegos/<%= item._id %>?_method=PUT" enctype="multipart/form-data" class="mt-3">
+  <%- include('_form') %>
+  <div class="mt-3">
+    <button class="btn btn-primary">Guardar cambios</button>
+    <a class="btn btn-outline-secondary" href="/videojuegos/<%= item._id %>">Cancelar</a>
+  </div>
+</form>

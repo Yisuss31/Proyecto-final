@@ -1,0 +1,43 @@
+<% if (errors && errors.length) { %>
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      <% errors.forEach(e => { %><li><%= e.msg || e.message %></li><% }) %>
+    </ul>
+  </div>
+<% } %>
+<div class="row g-3">
+  <div class="col-md-8">
+    <label class="form-label">Título *</label>
+    <input name="titulo" class="form-control" value="<%= values.titulo || '' %>" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Año *</label>
+    <input name="anio" type="number" class="form-control" value="<%= values.anio || '' %>"
+           min="1970" max="<%= new Date().getFullYear() %>" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Plataforma *</label>
+    <input name="plataforma" class="form-control" value="<%= values.plataforma || '' %>" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Género *</label>
+    <input name="genero" class="form-control" value="<%= values.genero || '' %>" required>
+  </div>
+  <div class="col-md-8">
+    <label class="form-label">Desarrollador</label>
+    <input name="desarrollador" class="form-control" value="<%= values.desarrollador || '' %>">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Rating (0-10)</label>
+    <input name="rating" type="number" step="0.1" min="0" max="10"
+           class="form-control" value="<%= values.rating || 0 %>">
+  </div>
+  <div class="col-12">
+    <label class="form-label">Descripción</label>
+    <textarea name="descripcion" class="form-control" rows="4"><%= values.descripcion || '' %></textarea>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Portada (JPG/PNG/WebP/GIF · máx 3MB)</label>
+    <input type="file" name="imagen" class="form-control" accept="image/*">
+  </div>
+</div>

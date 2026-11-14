@@ -1,0 +1,18 @@
+<section class="card">
+  <h1>Crear Nuevo Post</h1>
+  <%- include('../partials/errors') %>
+  
+  <form action="/posts" method="POST">
+    <label>Título
+      <input type="text" name="title" value="<%= old.title || '' %>" required maxlength="200" placeholder="Un título llamativo...">
+    </label>
+    <label>Contenido
+      <textarea name="content" rows="8" required placeholder="Escribe aquí tu artículo..."><%= old.content || '' %></textarea>
+    </label>
+    <button type="submit" class="btn btn-block">Publicar Post</button>
+  </form>
+  
+  <div class="mt-4">
+    <a href="/posts">← Cancelar</a>
+  </div>
+</section>
